@@ -6,20 +6,13 @@ const exerciseRoute = async (req, res) => {
   const id = req.params._id;
   const description = req.body.description;
   const duration = Number(req.body.duration);
-  let date =
-    req.body.date === "undefined" ? new Date(req.body.date) : new Date();
+  const newDate = new Date()
+  let date = req.body.date === undefined ? newDate : new Date(req.body.date);
   const dateSplit = date.toString().split(" ");
 
   const dateJoin =
     dateSplit[0] + " " + dateSplit[1] + " " + dateSplit[2] + " " + dateSplit[3];
 
-  const everyUser = {
-    id,
-    description,
-    duration,
-    date: date
-  };
-  console.log(everyUser);
   await User.findById(id).then((data) => {
     const username = data.username;
     const count = 1;
