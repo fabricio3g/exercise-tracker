@@ -5,7 +5,7 @@ const User = require("../models/user.model");
 const exerciseRoute = async (req, res) => {
   const id = req.params._id;
   const description = req.body.description;
-  const duration = Number(req.body.duration);
+  const duration = parseInt(req.body.duration);
   const newDate = new Date()
   let date = req.body.date === undefined ? newDate : new Date(req.body.date);
   const dateSplit = date.toString().split(" ");
